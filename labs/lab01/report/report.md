@@ -1,38 +1,20 @@
 ---
-## Front matter
-title: "Отчёта по лабораторной работе №1"
-author: "Медведева Кристина Андреевна"
-group: "НПИбд-01-20"
-
-## Generic otions
+# Front matter
 lang: ru-RU
+title: "Отчёт по лабораторной работе №1"
+subtitle: "дисциплина: Математическое моделирование"
+author: "Абрамян Артём Арменович"
+
+# Formatting
 toc-title: "Содержание"
-
-## Bibliography
-bibliography: bib/cite.bib
-csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl
-
-## Pdf output format
 toc: true # Table of contents
-toc-depth: 2
-lof: true # List of figures
-lot: true # List of tables
+toc_depth: 2
 fontsize: 12pt
 linestretch: 1.5
-papersize: a4
+papersize: a4paper
 documentclass: scrreprt
-## I18n polyglossia
-polyglossia-lang:
-  name: russian
-  options:
-	- spelling=modern
-	- babelshorthands=true
-polyglossia-otherlangs:
-  name: english
-## I18n babel
-babel-lang: russian
-babel-otherlangs: english
-## Fonts
+polyglossia-lang: russian
+polyglossia-otherlangs: english
 mainfont: PT Serif
 romanfont: PT Serif
 sansfont: PT Sans
@@ -40,78 +22,69 @@ monofont: PT Mono
 mainfontoptions: Ligatures=TeX
 romanfontoptions: Ligatures=TeX
 sansfontoptions: Ligatures=TeX,Scale=MatchLowercase
-monofontoptions: Scale=MatchLowercase,Scale=0.9
-## Biblatex
-biblatex: true
-biblio-style: "gost-numeric"
-biblatexoptions:
-  - parentracker=true
-  - backend=biber
-  - hyperref=auto
-  - language=auto
-  - autolang=other*
-  - citestyle=gost-numeric
-## Pandoc-crossref LaTeX customization
-figureTitle: "Рис."
-tableTitle: "Таблица"
-listingTitle: "Листинг"
-lofTitle: "Список иллюстраций"
-lotTitle: "Список таблиц"
-lolTitle: "Листинги"
-## Misc options
+monofontoptions: Scale=MatchLowercase
 indent: true
+pdf-engine: lualatex
 header-includes:
-  - \usepackage{indentfirst}
+  - \linepenalty=10 # the penalty added to the badness of each line within a paragraph (no associated penalty node) Increasing the value makes tex try to have fewer lines in the paragraph.
+  - \interlinepenalty=0 # value of the penalty (node) added after each line of a paragraph.
+  - \hyphenpenalty=50 # the penalty for line breaking at an automatically inserted hyphen
+  - \exhyphenpenalty=50 # the penalty for line breaking at an explicit hyphen
+  - \binoppenalty=700 # the penalty for breaking a line at a binary operator
+  - \relpenalty=500 # the penalty for breaking a line at a relation
+  - \clubpenalty=150 # extra penalty for breaking after first line of a paragraph
+  - \widowpenalty=150 # extra penalty for breaking before last line of a paragraph
+  - \displaywidowpenalty=50 # extra penalty for breaking before last line before a display math
+  - \brokenpenalty=100 # extra penalty for page breaking after a hyphenated line
+  - \predisplaypenalty=10000 # penalty for breaking before a display
+  - \postdisplaypenalty=0 # penalty for breaking after a display
+  - \floatingpenalty = 20000 # penalty for splitting an insertion (can only be split footnote in standard LaTeX)
+  - \raggedbottom # or \flushbottom
   - \usepackage{float} # keep figures where there are in the text
   - \floatplacement{figure}{H} # keep figures where there are in the text
 ---
 
 # Цель работы
 
-Настройка и подготовка рабочего пространства для работы с git.
+В данной лабораторной работе мне было необходимо убедится в доступе к аккаунту github, вспомнить основные команды git и возможности markdown.
+
+# Теория
+
+- Команды:
+Создание репозитория git - команда git init.
+Формат команды: git init
+Проверить текущее состояние репозитория - команда git status.
+Формат команды: git status
+Индексация изменений - git add.
+Формат команды: git add имя-файла
+Коммит изменений - git commit.
+Формат команды: git commit
 
 # Задание
-1. Создать шаблон рабочего пространства, где расположить файлы с лаборотарными работами.
 
+Сделайте отчёт по предыдущей лабораторной работе в формате Markdown. В качестве отчёта просьба предоставить отчёты в 3 форматах: pdf, docx и md (в архиве, поскольку он должен содержать скриншоты, Makefile и т.д.)
 
-| Имя каталога | Описание каталога                                                                                                          |
-|--------------|----------------------------------------------------------------------------------------------------------------------------|
-| `/`          | Корневая директория, содержащая всю файловую                                                                               |
-| `/bin `      | Основные системные утилиты, необходимые как в однопользовательском режиме, так и при обычной работе всем пользователям     |
-| `/etc`       | Общесистемные конфигурационные файлы и файлы конфигурации установленных программ                                           |
-| `/home`      | Содержит домашние директории пользователей, которые, в свою очередь, содержат персональные настройки и данные пользователя |
-| `/media`     | Точки монтирования для сменных носителей                                                                                   |
-| `/root`      | Домашняя директория пользователя  `root`                                                                                   |
-| `/tmp`       | Временные файлы                                                                                                            |
-| `/usr`       | Вторичная иерархия для данных пользователя                                                                                 |
-
-Более подробно об Unix см. в [@gnu-doc:bash;@newham:2005:bash;@zarrelli:2017:bash;@robbins:2013:bash;@tannenbaum:arch-pc:ru;@tannenbaum:modern-os:ru].
 
 # Выполнение лабораторной работы
 
-1. Устанавливаем git. Настраиваем его работу.
-2. Создаем в папке 2022-2023, где размещаем папку "Математическое моделирование", где создаем папку "mathmod".
-![Скрин 1](1.png){#fig:001 width=70%}
-3. Создаем репозиторий по шаблону.
-![Скрин 1](2.png){#fig:001 width=70%}
-4. Создаем ssh ключи и подключаемся с помощью git.
-![Скрин 1](4.png){#fig:001 width=70%}
-![Скрин 1](7.png){#fig:001 width=70%}
-5. Скачиваем pandoc.
-![Скрин 1](3.png){#fig:001 width=70%}
-6. Создаем папку с лабораторными работами, где создаем папки для каждой лабораторной. 
-![Скрин 1](5.png){#fig:001 width=70%}
-7. В папки с лабораторными работами помещаем 2 папки: report  presentation.
-![Скрин 1](8.png){#fig:001 width=70%}
-8. В каждой из папок применяем make, чтобы получить pdf и docx файлы из файла маркдауна.
-![Скрин 1](6.png){#fig:001 width=70%}
-9. Редактируем файлы с отчетами.
-10. Обновляем содержимое репозитория.
+1. Создали репозиторий на основе шаблона. 
 
 
-# Вывод
-Проделав работу, мы подготовили рабочее пространство для работы с git.
 
-# Литература
-::: {#refs}
-:::
+
+2. С помощью makefile создали отчёт в форматах pdf и docx. 
+
+
+
+
+# Выводы
+
+В данной лабораторной работе мне успешно удалось вспомнить работу с git, создать отчёт в формате markdown и получить из этого файла отчёты в форматаз pdf и docx.
+
+# Библиографический список
+
+1. Команды git (https://git-scm.com/docs)
+2. Markdown документация (https://www.markdownguide.org/basic-syntax/)
+
+
+
